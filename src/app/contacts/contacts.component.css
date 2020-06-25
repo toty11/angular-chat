@@ -6,6 +6,7 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
+    border-top: 1px solid #e5ddd5;
     border-bottom: 1px solid #e5ddd5;
 }
 
