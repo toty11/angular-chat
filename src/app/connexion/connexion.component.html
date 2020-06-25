@@ -1,0 +1,16 @@
+<div class="newsletter-subscribe">
+    <div class="container">
+        <div class="intro text-center">
+            <h1 class="bg-warning" style="height:60px">WhatsAppLike</h1>
+            <h2>Connectez vous pour utiliser le service</h2>
+            <p *ngIf="info_connexion != ''" class="alert alert-danger">{{info_connexion}}</p>
+        </div>
+        <form class="form-inline">
+            <div class="form-group"><input class="form-control" placeholder="Votre Identifiant" [formControl]="identifiant"></div>
+            <div class="form-group"><button class="btn btn-primary" (click)="connexion()">Connexion</button></div>
+        </form>
+    </div>
+</div>
+<div class="fixed-top ml-3 mt-3">
+    <a class="badge badge-pill badge-warning" routerLink="/inscription">S'inscrire</a>
+</div>

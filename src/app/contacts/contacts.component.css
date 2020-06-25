@@ -1,0 +1,54 @@
+.contact-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-bottom: 1px solid #e5ddd5;
+}
+
+.contact-item:hover{
+    background-color: #F5F5F5;
+}
+
+.contact-img {
+    padding: 15px 15px 15px 13px;
+}
+
+.contact-name {
+    padding: 20px 0 15px 13px;
+    
+}
+
+.contact-name p {
+    font-weight: 400;
+    font-size: 17px;
+    color: #000;
+}
+
+.circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    text-align:center;
+    line-height:50px;
+}
+
+.bg-circle-yellow {
+    background: yellow;
+}
+
+.bg-circle-red {
+    background: yellow;
+}
+
+.bg-circle-green {
+    background: yellow;
+}
+
+.circle p {
+    color: white;
+    font-size: 30px;
+}

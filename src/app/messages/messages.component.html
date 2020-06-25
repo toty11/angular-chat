@@ -1,0 +1,25 @@
+<div *ngIf="contact" class="messages-container"> 
+  <div class="box-flex">
+    <div class="identite">
+      <h3 class="ml-4">{{contact.identite}}</h3>
+    </div>
+    <div class="content">
+        <div class="messages-item overflow-auto">
+            <div *ngFor="let message of messages" [ngClass]="{'flex-container-end' : message.identite === user_connecter.pseudo, 'flex-container' : message.identite != user_connecter.pseudo }">
+                <svg class="green">
+                    <path d="M 5 0 L 5 0 L 5 0 C 2 0 0 2 0 5 V 38 C 0 42 2 43 5 43 L 72 43 C 75 43 76 41 76 39 L 76 7 L 84 0 H 75"/>
+                    <text x="0" y="15" fill="black">{{message.identite}}: {{message.message}}</text>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+      <div class="bottom .col-xs-9 .col-md-7 ml-5 mr-2 w-75">
+        <form class="form-inline mt-2">
+            <input placeholder="Envoyer un message" class="form-control col-sm-6 col-6 col-md-10">
+            <img class="ml-2 mr-2" src="assets/send.png">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

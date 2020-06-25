@@ -1,0 +1,25 @@
+<div *ngIf="user_connecter" class="float-left w-25 border-right" style="position:fixed">
+    <div class="pt-3 border-bottom" style="width:auto;background-color: #EDEDED;">
+        <div class="mx-auto mb-3" style="width: 100px;">
+            <img src="assets/user.png" class="mx-auto d-block">
+            <p class="text-center mt-2 font-weight-bolder">{{user_connecter.pseudo}}</p>
+            <a class="badge badge-pill badge-light text-center" routerLink="/inscription">Deconnexion</a>
+        </div>
+    </div>
+  
+    <div *ngFor="let contact of contacts" class="contact-item" (click)="onSelect(contact)">
+        <div class="row no-gutters">
+            <div class="col-sm-3 contact-img">
+                <div class="circle bg-circle-yellow">
+                    <p>{{contact.identite.substring(0,1)}}</p>
+                </div>
+            </div>
+            <div class="col-sm-7 contact-name">
+                <div class=""><p>{{contact.identite}}</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-messages [contact]="selectedContact"></app-messages>
+
