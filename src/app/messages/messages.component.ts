@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription, Observable, timer } from 'rxjs';
 import { Contact } from '../contact';
@@ -35,6 +35,7 @@ export class MessagesComponent implements OnInit {
   }
 
   ngOnChanges(): void {
+    this.messages = [];
     if(this.contact != undefined){
       this.getMessages();
       this.subscription = this.everySecond.subscribe((seconds) => {
