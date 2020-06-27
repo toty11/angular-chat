@@ -34,6 +34,8 @@ export class ConnexionComponent implements OnInit {
         
         self.userService.changeUser(user);
         self.router.navigate(["/acceuil"]);
+      }else {
+        self.info_connexion = "Identifiant incorrecte";
       }
     });
   }

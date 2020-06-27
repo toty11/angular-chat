@@ -2,22 +2,40 @@
   <div class="box-flex">
     <div class="identite">
       <h3 class="ml-4">{{contact.identite}}</h3>
+      <img src="../../assets/bin.png" class="bin mr-2" (click)="supprimer_contact()">
     </div>
     <div class="content">
         <div class="messages-item overflow-auto">
             <div *ngFor="let message of messages" [ngClass]="{'flex-container-end' : message.identite === user_connecter.pseudo, 'flex-container' : message.identite != user_connecter.pseudo }">
-                <svg class="green">
-                    <path d="M 5 0 L 5 0 L 5 0 C 2 0 0 2 0 5 V 38 C 0 42 2 43 5 43 L 72 43 C 75 43 76 41 76 39 L 76 7 L 84 0 H 75"/>
-                    <text x="0" y="15" fill="black">{{message.identite}}: {{message.message}}</text>
-                </svg>
+                <ng-template [ngIf]="message.identite != user_connecter.pseudo">
+                  <span class="tail-in">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" width="8" height="13">
+                      <path opacity=".13" fill="#0000000" d="M1.533 3.568L8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z"></path>
+                      <path fill="currentColor" d="M1.533 2.568L8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z"></path>
+                    </svg>
+                  </span>
+                </ng-template>
+                <div [ngClass]="{'message-box-right' : message.identite === user_connecter.pseudo, 'message-box-left' : message.identite != user_connecter.pseudo }">
+                  <div class="message-text">
+                    {{message.message}}
+                  </div>
+                </div>
+                <ng-template [ngIf]="message.identite === user_connecter.pseudo">
+                  <span class="tail-out">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 13" width="8" height="13">
+                      <path opacity=".13" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path>
+                      <path fill="currentColor" d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path>
+                    </svg>
+                  </span>
+                </ng-template>            
             </div>
         </div>
     </div>
     <div class="footer">
       <div class="bottom .col-xs-9 .col-md-7 ml-5 mr-2 w-75">
         <form class="form-inline mt-2">
-            <input placeholder="Envoyer un message" class="form-control col-sm-6 col-6 col-md-10">
-            <img class="ml-2 mr-2" src="assets/send.png">
+            <input placeholder="Envoyer un message" class="form-control col-sm-6 col-6 col-md-10" [formControl]="message_envoyer">
+            <img class="ml-2 mr-2" src="assets/send.png" (click)="envoyer_message()">
         </form>
       </div>
     </div>

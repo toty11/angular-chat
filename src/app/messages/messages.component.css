@@ -9,8 +9,6 @@
   position: fixed;
   bottom: 0;
   height: 60px;
-  width: 100%;
-  flex: none;
 }
 
 .bottom img:hover {
@@ -25,6 +23,7 @@
   padding-top: 50px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 65px;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -53,10 +52,9 @@ svg {
 }
 
 .identite {
-  flex: none;
+  position: fixed;
   background-color: #EDEDED;
   border-left: 1px solid #DADADA;
-  position: fixed;
   height: 45px;
   width: 100%;
 }
@@ -65,6 +63,7 @@ svg {
   flex: auto;
   overflow-y: scroll;
   background: url('../../assets/background.png');
+  height: 100vh;
 }
 
 .footer {
@@ -74,4 +73,54 @@ svg {
   bottom: 0;
   height: 60px;
   background-color: #F0F0F0;
+}
+
+.bin {
+  top: 5px;
+  right: 5px;
+  position: fixed;
+  float: right;
+  cursor: pointer;
+}
+
+.tail-out {
+  color: #dcf8c6;
+  display: block;
+  height: 13px;
+  position: relative;
+  top: -8px;
+  right: 0px;
+  width: 8px;
+}
+
+.message-box-right {
+  margin-bottom:5px;
+  background-color: #dcf8c6;
+  height: auto;
+  max-width: 40%;
+  border-radius: 7.5px;
+  border-top-right-radius: 0;
+}
+
+.tail-in {
+  color: white;
+  display: block;
+  height: 13px;
+  position: relative;
+  top: -8px;
+  left: 0px;
+  width: 8px;
+}
+
+.message-box-left {
+  margin-bottom: 5px;
+  background-color: white;
+  height: auto;
+  max-width: 40%;
+  border-radius: 7.5px;
+  border-top-left-radius: 0;
+}
+
+.message-text {
+  padding: 6px 7px 8px 9px;
 }

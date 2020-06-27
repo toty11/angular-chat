@@ -26,9 +26,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/js/jquery.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -92,9 +90,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "src/assets/js/jquery.js"
-            ]
+            "scripts": []
           }
         },
         "lint": {

@@ -1,2 +1,7 @@
 @import './assets/css/bootstrap.min.css';
 /* You can add global styles to this file, and also import other style files */
+
+* {
+	scrollbar-color: rgba(0,0,0,.2) hsla(0,0%,100%,.1);
+	scrollbar-width: thin;
+}

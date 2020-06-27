@@ -6,18 +6,29 @@
             <a class="badge badge-pill badge-light text-center" routerLink="/inscription">Deconnexion</a>
         </div>
     </div>
-    <div class="mx-auto w-50" style="height: 50px;">
-        <button class="mt-2 btn btn-primary" data-toggle="modal" data-target="#exampleModal">Ajouter un contact +</button>
+    <div class="text-center" style="height: auto;">
+        <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary m-2" (click)="show_input_ajout_contact()">Ajouter un contact</button>
+      <div id="input-ajout-contact" style="display: none">
+        <div class="input-group mx-auto w-75 mb-3 mt-3">
+          <input type="text" class="form-control" placeholder="Email du contact" [formControl]="email_contact">
+          <div class="input-group-append">
+            <button class="btn btn-success" type="button" id="button-addon2" (click)="ajout_contact()">Valider</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div *ngFor="let contact of contacts" class="contact-item" (click)="onSelect(contact)">
-        <div class="row no-gutters">
-            <div class="col-sm-3 contact-img">
-                <div class="circle bg-circle-yellow">
-                    <p>{{contact.identite.substring(0,1)}}</p>
+    <div class="overflow-auto" style="height: calc(100vh - 277px)">
+        <div *ngFor="let contact of contacts;index as i" class="contact-item" (click)="onSelect(contact)">
+            <div class="row no-gutters">
+                <div class="col-sm-3 contact-img">
+                    <div class="circle" [ngClass]="{'bg-circle-red': i == 0 , 'bg-circle-yellow': (i > 0 && i <=3) || (i > 5), 'bg-circle-green': i > 3 }">
+                        <p>{{contact.identite.substring(0,1).toUpperCase()}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col-sm-7 contact-name">
-                <div class=""><p>{{contact.identite}}</p></div>
+                <div class="col-sm-7 contact-name">
+                    <div class=""><p>{{contact.identite}}</p></div>
+                </div>
             </div>
         </div>
     </div>
@@ -25,24 +36,5 @@
 
 <app-messages [contact]="selectedContact"></app-messages>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
