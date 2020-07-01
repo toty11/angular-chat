@@ -16,6 +16,7 @@
             <button class="btn btn-success" type="button" id="button-addon2" (click)="ajout_contact()">Valider</button>
           </div>
         </div>
+        <p *ngIf="ajout_contact_info != null" class="text-danger">{{ajout_contact_info}}</p>
       </div>
     </div>
     <div class="overflow-auto" style="height: calc(100vh - 277px)">

@@ -19,6 +19,9 @@
                   <div class="message-text">
                     {{message.message}}
                   </div>
+                  <div class="text-secondary" style="position:relative;float:right;margin-right:3px;margin-bottom:4px;height:15px">
+                    <p style="font-size: 11px;">{{message.time}}</p>
+                  </div>
                 </div>
                 <ng-template [ngIf]="message.identite === user_connecter.pseudo">
                   <span class="tail-out">

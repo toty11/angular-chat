@@ -13,13 +13,9 @@ export class MessagesComponent implements OnInit {
 
   @Input() contact: Contact;
   user_connecter = null;
+  message = "";
   message_envoyer = new FormControl();
   
-  message = {
-    identite: 'toty',
-    message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-  };
-
   message_cuda = {
     identite: 'cuda',
     message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -36,7 +32,7 @@ export class MessagesComponent implements OnInit {
 
   ngOnChanges(): void {
     this.messages = [];
-    if(this.contact != undefined){
+    if(this.contact != undefined || this.contact != null){
       this.getMessages();
       this.subscription = this.everySecond.subscribe((seconds) => {
         this.getMessages();
@@ -44,7 +40,6 @@ export class MessagesComponent implements OnInit {
     }
   }
 
-  //this.subscription.unsubscribe();
   getMessages(): void {
     const url = "https://trankillprojets.fr/wal/wal.php?lire&identifiant="+this.user_connecter.identifiant+"&relation="+this.contact.relation;
     
@@ -52,24 +47,41 @@ export class MessagesComponent implements OnInit {
     fetch(url)
     .then((response) => response.json())
     .then(function(data) {
-      console.log(data);
       if(data.etat.reponse == "1" && data.messages.length > 0){
         data.messages.forEach(element => {
-          self.messages.push(element);
+          var d = new Date(Number(self.getMetaData(element.message,"<t>","</t>")) * 1000);
+          const message = {
+            identite: element.identite,
+            message: self.getMetaData(element.message,"<m>","</m>"),
+            time: self.addZero(d.getHours())+":"+self.addZero(d.getMinutes())
+          };
+          if(self.messages.find(e => e.message === message.message && e.time === message.time) === undefined){
+            self.messages.push(message);
+          }
         });
       }
     });
   }
 
+  //Pour le formatage de l'heure ajoute des zéros
+  addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
   envoyer_message(): void{
-    console.log("img");
-    if(this.message_envoyer.value != null){
-      const url = "https://trankillprojets.fr/wal/wal.php?ecrire&identifiant="+this.user_connecter.identifiant+"&relation="+this.contact.relation+"&message="+this.message_envoyer.value;
+    if(this.message_envoyer.value != null && this.message_envoyer.value != ""){
+      const message_metaData = this.ajouterMetaData(this.message_envoyer.value);
+      const url = "https://trankillprojets.fr/wal/wal.php?ecrire&identifiant="+this.user_connecter.identifiant+"&relation="+this.contact.relation+"&message="+message_metaData;
+      var d = new Date(Number(this.getMetaData(message_metaData,"<t>","</t>")) * 1000);
       const message = {
         identite: this.user_connecter.pseudo,
-        message: this.message_envoyer.value
+        message: this.message_envoyer.value,
+        time: this.addZero(d.getHours())+":"+this.addZero(d.getMinutes())
       };
-
+     
       var self = this;
       fetch(url)
       .then((response) => response.json())
@@ -80,6 +92,18 @@ export class MessagesComponent implements OnInit {
         }
       });
     }
+  }
+
+  //Ajoute metadata timestamp, message
+  ajouterMetaData(message): string{
+    return "<t>"+Math.floor(Date.now() / 1000)+"</t><m>"+message+"</m>";
+  }
+
+  //Permet de récupérer la metadata qui nous intéresse
+  getMetaData(message, baliseOuvrante, baliseFermante){
+    var debut = message.indexOf(baliseOuvrante);
+    var fin = message.indexOf(baliseFermante);
+    return message.substring(debut+3,fin);
   }
 
   supprimer_contact(): void {

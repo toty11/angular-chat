@@ -98,6 +98,7 @@ svg {
   background-color: #dcf8c6;
   height: auto;
   max-width: 40%;
+  min-width: 10%;
   border-radius: 7.5px;
   border-top-right-radius: 0;
 }
@@ -117,6 +118,7 @@ svg {
   background-color: white;
   height: auto;
   max-width: 40%;
+  min-width: 10%;
   border-radius: 7.5px;
   border-top-left-radius: 0;
 }

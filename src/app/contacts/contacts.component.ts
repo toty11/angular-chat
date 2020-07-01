@@ -16,6 +16,7 @@ export class ContactsComponent implements OnInit {
   selectedContact: Contact;
   email_contact = new FormControl();
   contacts = [];
+  ajout_contact_info = null;
   el:HTMLElement;
 
   constructor(private userService: UserService, el: ElementRef) { this.el = el.nativeElement}
@@ -23,6 +24,7 @@ export class ContactsComponent implements OnInit {
   ngOnInit(): void {
     this.userService.currentUser.subscribe(user => this.user_connecter = user);
     this.getContacts();
+    setInterval(()=>{this.getContacts()}, 10000);
   }
 
   onSelect(contact: Contact): void {   
@@ -64,6 +66,8 @@ export class ContactsComponent implements OnInit {
           self.getContacts();
           self.email_contact.setValue("");
           self.hide_input_ajout_contact();
+        }else{
+          self.ajout_contact_info = "Impossible d'ajouter ce contact";
         }
       });
     }
