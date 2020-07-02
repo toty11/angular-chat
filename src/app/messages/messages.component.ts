@@ -28,6 +28,12 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.currentUser.subscribe(user => this.user_connecter = user);
+    var self = this;
+    document.addEventListener("keypress", function (e){
+      if(e.key == "Enter"){
+        self.envoyer_message();
+      }
+    });
   }
 
   ngOnChanges(): void {

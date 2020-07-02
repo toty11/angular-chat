@@ -24,3 +24,11 @@ npm install
 ## Lancement
 
 Executer `ng serve` puis rendez-vous sur `http://localhost:4200/`
+
+## Fonctionnalité
+
+Connexion à un compte avec identifiant
+Création d'un compte
+Listing des contacts
+Ajouter un contact
+Envoie d'un message avec clic bouton envoyer et touche entrer

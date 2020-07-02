@@ -2,7 +2,7 @@
   <div class="box-flex">
     <div class="identite">
       <h3 class="ml-4">{{contact.identite}}</h3>
-      <img src="../../assets/bin.png" class="bin mr-2" (click)="supprimer_contact()">
+      <img src="assets/bin.png" class="bin mr-2" (click)="supprimer_contact()">
     </div>
     <div class="content">
         <div class="messages-item overflow-auto">
@@ -37,7 +37,7 @@
     <div class="footer">
       <div class="bottom .col-xs-9 .col-md-7 ml-5 mr-2 w-75">
         <form class="form-inline mt-2">
-            <input placeholder="Envoyer un message" class="form-control col-sm-6 col-6 col-md-10" [formControl]="message_envoyer">
+            <input placeholder="Envoyer un message" class="form-control col-sm-6 col-6 col-md-10" id="input_message" [formControl]="message_envoyer">
             <img class="ml-2 mr-2" src="assets/send.png" (click)="envoyer_message()">
         </form>
       </div>
