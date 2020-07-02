@@ -1,4 +1,4 @@
-# AngularChat
+# Angular-chat
 
 Projet applications centrées utilisateur
 
