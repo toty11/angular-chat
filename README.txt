@@ -2,7 +2,7 @@
 
 Projet applications centrées utilisateur M1 MIAGE
 JOSEPH-PARFAITE Thomas
-
+https://github.com/toty11/angular-chat
 Pour tester l'application rendez-vous sur https://toty11.github.io/angular-chat/
 
 # Installation
